@@ -1,7 +1,7 @@
 param(
-    [string]$PackageName = "com.omistaja.error-whisperer",
+    [string]$PackageName = "com.yanicloud7.error-whisperer",
     [string]$RepositoryName = "Yani-cloud7 VRChat Creator Tools",
-    [string]$RepositoryId = "com.omistaja.vpm",
+    [string]$RepositoryId = "com.yanicloud7.vpm",
     [string]$RepositoryAuthor = "Yani-cloud7",
     [string]$BaseUrl = "https://Yani-cloud7.github.io/vrchat-error-whisperer"
 )

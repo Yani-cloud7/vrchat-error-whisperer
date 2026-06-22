@@ -11,7 +11,7 @@ Run this from the workspace root whenever the package changes:
 Publish these generated files somewhere public:
 
 - `vpm-repository/index.json`
-- `vpm-repository/packages/com.omistaja.error-whisperer-0.1.15.zip`
+- `vpm-repository/packages/com.yanicloud7.error-whisperer-0.1.15.zip`
 
 For GitHub Pages, the final Creator Companion repository URL would look like:
 

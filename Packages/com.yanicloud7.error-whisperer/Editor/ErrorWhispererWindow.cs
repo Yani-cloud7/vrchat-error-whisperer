@@ -1041,7 +1041,7 @@ namespace VRChatUtility.ErrorWhisperer.Editor
 
         private static class CorpusLoader
         {
-            private const string PackageCorpusPath = "Packages/com.omistaja.error-whisperer/Editor/vrchat-error-corpus.json";
+            private const string PackageCorpusPath = "Packages/com.yanicloud7.error-whisperer/Editor/vrchat-error-corpus.json";
             private const string WorkspaceCorpusPath = "validation/errors/vrchat-error-corpus.json";
             private static CorpusCase[] cachedCases;
 

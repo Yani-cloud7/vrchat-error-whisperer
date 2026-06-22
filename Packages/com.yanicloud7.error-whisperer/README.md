@@ -27,7 +27,7 @@ Unity Editor alpha tool for ranking VRChat SDK, Udon, Quest, and upload issues f
 4. Choose `Add package from disk...`.
 5. Select this file:
 
-   `Packages/com.omistaja.error-whisperer/package.json`
+   `Packages/com.yanicloud7.error-whisperer/package.json`
 
 ## Use
 

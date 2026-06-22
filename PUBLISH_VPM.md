@@ -4,14 +4,14 @@ This project now has a VPM-compatible package and repository listing.
 
 ## Files
 
-- Package source: `Packages/com.omistaja.error-whisperer`
+- Package source: `Packages/com.yanicloud7.error-whisperer`
 - Repository listing: `vpm-repository/index.json`
-- Package zip: `vpm-repository/packages/com.omistaja.error-whisperer-0.1.15.zip`
+- Package zip: `vpm-repository/packages/com.yanicloud7.error-whisperer-0.1.15.zip`
 - Rebuild script: `tools/build-vpm-repository.ps1`
 
 ## Before Publishing
 
-1. Confirm `Packages/com.omistaja.error-whisperer/package.json` has the intended version.
+1. Confirm `Packages/com.yanicloud7.error-whisperer/package.json` has the intended version.
 2. Run the matcher/build script:
 
    ```powershell
@@ -46,7 +46,7 @@ This project now has a VPM-compatible package and repository listing.
 
 ## Release Update Flow
 
-1. Change `version` in `Packages/com.omistaja.error-whisperer/package.json`.
+1. Change `version` in `Packages/com.yanicloud7.error-whisperer/package.json`.
 2. Run:
 
    ```powershell

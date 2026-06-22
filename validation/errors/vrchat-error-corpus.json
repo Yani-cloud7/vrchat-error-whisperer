@@ -1933,7 +1933,7 @@
                                        },
                       "rawSignals":  [
                                          "Project has invalid dependencies",
-                                         "com.omistaja.error-whisperer",
+                                         "com.yanicloud7.error-whisperer",
                                          "package.json cannot be found",
                                          "Unity Package Manager Error"
                                      ],
@@ -1975,10 +1975,10 @@
                                          "nothing there",
                                          "Tools menu does not show Error Whisperer",
                                          "Compatibility Shim",
-                                         "com.omistaja.error-whisperer"
+                                         "com.yanicloud7.error-whisperer"
                                      ],
                       "rootCause":  "Unity resolved the placeholder package but did not load the real editor assembly with the MenuItem.",
-                      "fixFirst":  "Point the project manifest at com.omistaja.error-whisperer and let Unity recompile editor scripts.",
+                      "fixFirst":  "Point the project manifest at com.yanicloud7.error-whisperer and let Unity recompile editor scripts.",
                       "ignoreUntilLater":  [
 
                                            ],
@@ -3427,7 +3427,7 @@
                                          "rebuild the VPM zip",
                                          "repository package would still contain the old editor code",
                                          "Built VPM repository",
-                                         "packages/com.omistaja.error-whisperer"
+                                         "packages/com.yanicloud7.error-whisperer"
                                      ],
                       "rootCause":  "Editing package source does not update the published VPM archive until the build script runs.",
                       "fixFirst":  "Run the VPM repository build script after source changes and verify the zip contents.",
@@ -3776,7 +3776,7 @@
                                          "Publish the contents of vpm-repository",
                                          "GitHub Pages",
                                          "index.json",
-                                         "packages/com.omistaja.error-whisperer"
+                                         "packages/com.yanicloud7.error-whisperer"
                                      ],
                       "rootCause":  "VCC can only install if index.json and referenced package zips are reachable at expected URLs.",
                       "fixFirst":  "Publish index.json and packages/ together, then add the Pages index URL in VCC.",
@@ -3952,6 +3952,7 @@
                   }
               ]
 }
+
 
 
 

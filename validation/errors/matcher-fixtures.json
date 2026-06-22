@@ -15,7 +15,7 @@
     {
       "id": "old-package-id-blocker",
       "description": "Unity package manifest dependency points at the old package id.",
-      "input": "[Error] Unity Package Manager Error\n[Error] Project has invalid dependencies\n[Error] com.omistaja.error-whisperer: package.json cannot be found",
+      "input": "[Error] Unity Package Manager Error\n[Error] Project has invalid dependencies\n[Error] com.yanicloud7.error-whisperer: package.json cannot be found",
       "expected": {
         "errorCount": 3,
         "topFindingId": "vrchat-unity-manifest-old-package-id",
@@ -91,7 +91,7 @@
     {
       "id": "error-whisperer-self-compile-error",
       "description": "Error Whisperer's own editor compile errors should rank above unrelated stale project errors.",
-      "input": "[Error] C:\\Users\\Example\\Documents\\VRChatProject\\Packages\\com.omistaja.error-whisperer\\Editor\\ErrorWhispererWindow.cs(169,66): error CS1061: 'ErrorWhispererWindow.EvidenceLine' does not contain a definition for 'Suspects' and no accessible extension method 'Suspects' accepting a first argument of type 'ErrorWhispererWindow.EvidenceLine' could be found\n[Error] C:\\Users\\Example\\Documents\\VRChatProject\\Packages\\com.omistaja.error-whisperer\\Editor\\ErrorWhispererWindow.cs(376,42): error CS1729: 'ErrorWhispererWindow.EvidenceLine' does not contain a constructor that takes 3 arguments\n[Error] ArgumentNullException: Value cannot be null.",
+      "input": "[Error] C:\\Users\\Example\\Documents\\VRChatProject\\Packages\\com.yanicloud7.error-whisperer\\Editor\\ErrorWhispererWindow.cs(169,66): error CS1061: 'ErrorWhispererWindow.EvidenceLine' does not contain a definition for 'Suspects' and no accessible extension method 'Suspects' accepting a first argument of type 'ErrorWhispererWindow.EvidenceLine' could be found\n[Error] C:\\Users\\Example\\Documents\\VRChatProject\\Packages\\com.yanicloud7.error-whisperer\\Editor\\ErrorWhispererWindow.cs(376,42): error CS1729: 'ErrorWhispererWindow.EvidenceLine' does not contain a constructor that takes 3 arguments\n[Error] ArgumentNullException: Value cannot be null.",
       "expected": {
         "errorCount": 3,
         "topFindingId": "vrchat-package-asmdef-imported-but-menu-absent-compile-block",
@@ -101,4 +101,5 @@
     }
   ]
 }
+
 
