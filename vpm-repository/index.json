@@ -1,8 +1,8 @@
 ﻿{
-    "name":  "OMISTAJA VRChat Creator Tools",
+    "name":  "Yani-cloud7 VRChat Creator Tools",
     "id":  "com.omistaja.vpm",
     "url":  "https://revelizermail-design.github.io/vrchat-error-whisperer/index.json",
-    "author":  "OMISTAJA",
+    "author":  "Yani-cloud7",
     "packages":  {
                      "com.omistaja.error-whisperer":  {
                                                           "versions":  {
@@ -18,9 +18,9 @@
 
                                                                                                               },
                                                                                           "author":  {
-                                                                                                         "name":  "OMISTAJA"
+                                                                                                         "name":  "Yani-cloud7"
                                                                                                      },
-                                                                                          "zipSHA256":  "882e43b74e6a7e5f4deffb684e615f8e3a9478161662582b19d72b2731048ad6"
+                                                                                          "zipSHA256":  "ee20b73624e9d03974c2301d468d405c287771b4a441fe1d8fb6a069ba0b94db"
                                                                                       }
                                                                        }
                                                       }

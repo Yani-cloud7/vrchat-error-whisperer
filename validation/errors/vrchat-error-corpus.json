@@ -2125,7 +2125,7 @@
                                            "title":  "Prototype tiny concept"
                                        },
                       "rawSignals":  [
-                                         "file:C:/Users/OMISTAJA/Documents/VrchatUtilityExperiment/Packages",
+                                         "file:C:/Users/Example/Documents/VRChatProject/Packages",
                                          "VRChatCreatorCompanion/VRChatProjects",
                                          "local package",
                                          "manifest.json"
@@ -3952,5 +3952,6 @@
                   }
               ]
 }
+
 
 

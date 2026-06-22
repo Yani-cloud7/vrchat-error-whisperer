@@ -1,8 +1,8 @@
 param(
     [string]$PackageName = "com.omistaja.error-whisperer",
-    [string]$RepositoryName = "OMISTAJA VRChat Creator Tools",
+    [string]$RepositoryName = "Yani-cloud7 VRChat Creator Tools",
     [string]$RepositoryId = "com.omistaja.vpm",
-    [string]$RepositoryAuthor = "OMISTAJA",
+    [string]$RepositoryAuthor = "Yani-cloud7",
     [string]$BaseUrl = "https://revelizermail-design.github.io/vrchat-error-whisperer"
 )
 
