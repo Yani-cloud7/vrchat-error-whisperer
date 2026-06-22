@@ -21,6 +21,7 @@ namespace VRChatUtility.ErrorWhisperer.Editor
         private readonly Dictionary<string, bool> expandedFindings = new Dictionary<string, bool>();
         private List<SuspectAsset> suspectAssets = new List<SuspectAsset>();
         private string suspectScanSummary = "Not scanned yet.";
+        private static readonly Dictionary<string, Texture2D> ColorTextures = new Dictionary<string, Texture2D>();
 
         [MenuItem("Tools/VRChat Utility/Error Whisperer")]
         public static void Open()
@@ -97,18 +98,19 @@ namespace VRChatUtility.ErrorWhisperer.Editor
 
         private void DrawScore()
         {
-            using (new EditorGUILayout.HorizontalScope(EditorStyles.helpBox))
+            using (new EditorGUILayout.HorizontalScope(PanelStyle(new Color(0.22f, 0.22f, 0.22f))))
             {
-                DrawMetric("Error entries", result.ErrorCount.ToString());
-                DrawMetric("Warnings", result.WarningCount.ToString());
-                DrawMetric("Readiness", result.RawLineCount > 0 ? result.Score + "/100" : "-");
-                DrawMetric("Upload chance", result.RawLineCount > 0 ? result.UploadChance : "-");
+                DrawMetric("Error entries", result.ErrorCount.ToString(), result.ErrorCount > 0 ? ErrorColor() : GoodColor());
+                DrawMetric("Warnings", result.WarningCount.ToString(), result.WarningCount > 0 ? WarningColor() : GoodColor());
+                DrawMetric("Readiness", result.RawLineCount > 0 ? result.Score + "/100" : "-", ScoreColor(result.Score));
+                DrawMetric("Upload chance", result.RawLineCount > 0 ? result.UploadChance : "-", ChanceColor(result.UploadChance));
             }
         }
 
         private void DrawConsoleSummary()
         {
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            var color = result.ErrorCount > 0 ? new Color(0.30f, 0.22f, 0.20f) : new Color(0.20f, 0.27f, 0.22f);
+            using (new EditorGUILayout.VerticalScope(PanelStyle(color)))
             {
                 var primary = result.Findings.FirstOrDefault();
                 var summary = primary != null
@@ -265,12 +267,15 @@ namespace VRChatUtility.ErrorWhisperer.Editor
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
                     var expanded = IsExpanded(finding);
+                    var stripe = GUILayoutUtility.GetRect(3, 1, GUILayout.ExpandHeight(false));
+                    stripe.height = 3;
+                    EditorGUI.DrawRect(stripe, LaneColor(finding.Lane));
                     using (new EditorGUILayout.HorizontalScope())
                     {
                         expanded = EditorGUILayout.Foldout(expanded, finding.Title, true);
                         expandedFindings[finding.Id] = expanded;
                         GUILayout.FlexibleSpace();
-                        GUILayout.Label(finding.Confidence + "%", EditorStyles.miniBoldLabel, GUILayout.Width(42));
+                        GUILayout.Label(finding.Confidence + "%", BadgeStyle(LaneColor(finding.Lane)), GUILayout.Width(42));
                     }
 
                     EditorGUILayout.LabelField("Next: " + finding.Fix, WrappedStyle());
@@ -508,25 +513,108 @@ namespace VRChatUtility.ErrorWhisperer.Editor
             };
         }
 
-        private static void DrawMetric(string label, string value)
+        private static void DrawMetric(string label, string value, Color color)
         {
             using (new EditorGUILayout.VerticalScope(GUILayout.MinWidth(105)))
             {
                 EditorGUILayout.LabelField(label, EditorStyles.miniLabel);
-                EditorGUILayout.LabelField(value, MetricStyle());
+                EditorGUILayout.LabelField(value, MetricStyle(color));
             }
         }
 
-        private static GUIStyle MetricStyle()
+        private static GUIStyle MetricStyle(Color color)
         {
             return new GUIStyle(EditorStyles.boldLabel)
             {
-                fontSize = 18
+                fontSize = 18,
+                normal = { textColor = color }
             };
+        }
+
+        private static GUIStyle BadgeStyle(Color color)
+        {
+            return new GUIStyle(EditorStyles.miniBoldLabel)
+            {
+                alignment = TextAnchor.MiddleRight,
+                normal = { textColor = color }
+            };
+        }
+
+        private static GUIStyle PanelStyle(Color color)
+        {
+            var style = new GUIStyle(EditorStyles.helpBox);
+            style.normal.background = TextureForColor(color);
+            return style;
+        }
+
+        private static Texture2D TextureForColor(Color color)
+        {
+            var key = ColorUtility.ToHtmlStringRGBA(color);
+            Texture2D cached;
+            if (ColorTextures.TryGetValue(key, out cached) && cached != null)
+            {
+                return cached;
+            }
+
+            var texture = new Texture2D(1, 1);
+            texture.hideFlags = HideFlags.HideAndDontSave;
+            texture.SetPixel(0, 0, color);
+            texture.Apply();
+            ColorTextures[key] = texture;
+            return texture;
+        }
+
+        private static Color LaneColor(PriorityLane lane)
+        {
+            switch (lane)
+            {
+                case PriorityLane.UploadSupport:
+                    return new Color(0.68f, 0.45f, 0.95f);
+                case PriorityLane.FixFirst:
+                    return ErrorColor();
+                case PriorityLane.Then:
+                    return new Color(0.95f, 0.62f, 0.25f);
+                case PriorityLane.Warning:
+                    return WarningColor();
+                case PriorityLane.Related:
+                    return new Color(0.45f, 0.68f, 0.95f);
+                default:
+                    return new Color(0.55f, 0.55f, 0.55f);
+            }
+        }
+
+        private static Color ScoreColor(int score)
+        {
+            return score >= 82 ? GoodColor() : score >= 58 ? WarningColor() : ErrorColor();
+        }
+
+        private static Color ChanceColor(string chance)
+        {
+            return chance == "High" || chance == "Clean" || chance == "No blocking errors" ? GoodColor() :
+                chance == "Medium" ? WarningColor() : ErrorColor();
+        }
+
+        private static Color ErrorColor()
+        {
+            return new Color(1.0f, 0.42f, 0.36f);
+        }
+
+        private static Color WarningColor()
+        {
+            return new Color(1.0f, 0.78f, 0.30f);
+        }
+
+        private static Color GoodColor()
+        {
+            return new Color(0.44f, 0.86f, 0.52f);
         }
 
         private static class Analyzer
         {
+            private static readonly Regex CompilerErrorPattern = new Regex(
+                @"(?<path>(?:Assets|Packages)[\\/][^:(\r\n]+\.cs)\((?<line>\d+),(?<column>\d+)\):\s*error\s*(?<code>CS\d{4}):\s*(?<message>[^\r\n]+)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
             private static readonly Regex[] NoisePatterns =
             {
                 new Regex("begin mono manager reload", RegexOptions.IgnoreCase),
@@ -574,6 +662,7 @@ namespace VRChatUtility.ErrorWhisperer.Editor
                 var findings = CorpusLoader.Cases
                     .Select(corpusCase => MatchCase(corpusCase, textLower, errorGroups, includeQuestRules))
                     .Where(finding => finding != null)
+                    .Concat(BuildCompilerFindings(errorEntries))
                     .OrderByDescending(finding => finding.Priority)
                     .Take(8)
                     .ToList();
@@ -590,6 +679,79 @@ namespace VRChatUtility.ErrorWhisperer.Editor
                     entries.Count - groups.Count,
                     score,
                     chance);
+            }
+
+            private static IEnumerable<Finding> BuildCompilerFindings(List<ConsoleEntry> errorEntries)
+            {
+                var compilerMatches = errorEntries
+                    .Select(entry => new { Entry = entry, Match = CompilerErrorPattern.Match(entry.Text) })
+                    .Where(item => item.Match.Success)
+                    .GroupBy(item => item.Match.Groups["path"].Value.Replace('\\', '/') + "|" + item.Match.Groups["code"].Value)
+                    .Take(5);
+
+                foreach (var group in compilerMatches)
+                {
+                    var first = group.First();
+                    var match = first.Match;
+                    var path = match.Groups["path"].Value.Replace('\\', '/');
+                    var code = match.Groups["code"].Value;
+                    var line = match.Groups["line"].Value;
+                    var column = match.Groups["column"].Value;
+                    var message = match.Groups["message"].Value.Trim();
+                    var title = "C# compile error in " + Path.GetFileName(path) + " (" + code + ")";
+                    var fix = "Open " + path + " at line " + line + ", column " + column + " and fix this compiler error first.";
+                    var rootCause = "Unity cannot compile this script: " + message + ". VRChat/Udon analysis is secondary until C# compiles.";
+                    var recommendations = CompilerRecommendations(code);
+                    var evidence = group
+                        .Select(item => new EvidenceLine(item.Entry.FirstLine, 1, new[] { path + ":" + line }))
+                        .ToList();
+
+                    var syntheticCase = new CorpusCase
+                    {
+                        id = "generic-csharp-" + code.ToLowerInvariant() + "-" + NormalizeId(path),
+                        title = title,
+                        category = "udon-compile",
+                        severity = "blocker",
+                        caseType = "console-error",
+                        matchStrictness = "exact",
+                        rootCause = rootCause,
+                        fixFirst = fix,
+                        recommendations = recommendations,
+                        priorityBoost = 20
+                    };
+
+                    yield return new Finding(syntheticCase, evidence, 70);
+                }
+            }
+
+            private static string[] CompilerRecommendations(string code)
+            {
+                switch (code)
+                {
+                    case "CS1002":
+                        return new[] { "CS1002 usually means a missing semicolon before or at the reported location.", "Fix the first compiler error, then re-run UdonSharp compile." };
+                    case "CS1022":
+                        return new[] { "CS1022 often means an extra brace or code outside the class/namespace.", "Check the braces above the reported line before changing VRChat settings." };
+                    case "CS1513":
+                        return new[] { "CS1513 usually means a missing closing brace.", "Use the first reported line as the starting point; later compiler errors may be secondary." };
+                    case "CS0103":
+                        return new[] { "CS0103 means the name is not in scope. Check spelling, fields, methods, and using statements.", "If this is UdonSharp, confirm the API exists in your installed SDK version." };
+                    case "CS0246":
+                        return new[] { "CS0246 means a type or namespace is missing. Check package dependencies and using statements.", "If the type comes from a package, confirm the package imported correctly." };
+                    default:
+                        return new[] { "Fix compiler errors before debugging SDK upload, Udon sync, or Quest issues.", "Start with the first error in this script; later errors may be repeats." };
+                }
+            }
+
+            private static string NormalizeId(string value)
+            {
+                var builder = new StringBuilder();
+                foreach (var character in value.ToLowerInvariant())
+                {
+                    builder.Append(char.IsLetterOrDigit(character) ? character : '-');
+                }
+
+                return builder.ToString().Trim('-');
             }
 
             private static List<ConsoleEntry> SplitEntries(List<string> lines)
