@@ -1,7 +1,7 @@
 ﻿{
     "name":  "Yani-cloud7 VRChat Creator Tools",
     "id":  "com.omistaja.vpm",
-    "url":  "https://revelizermail-design.github.io/vrchat-error-whisperer/index.json",
+    "url":  "https://Yani-cloud7.github.io/vrchat-error-whisperer/index.json",
     "author":  "Yani-cloud7",
     "packages":  {
                      "com.omistaja.error-whisperer":  {
@@ -13,14 +13,14 @@
                                                                                           "description":  "A tiny Unity Editor prototype that ranks VRChat SDK, Udon, Quest, and upload issues from the Unity Console.",
                                                                                           "unity":  "2021.3",
                                                                                           "license":  "MIT",
-                                                                                          "url":  "https://revelizermail-design.github.io/vrchat-error-whisperer/packages/com.omistaja.error-whisperer-0.1.15.zip",
+                                                                                          "url":  "https://Yani-cloud7.github.io/vrchat-error-whisperer/packages/com.omistaja.error-whisperer-0.1.15.zip",
                                                                                           "vpmDependencies":  {
 
                                                                                                               },
                                                                                           "author":  {
                                                                                                          "name":  "Yani-cloud7"
                                                                                                      },
-                                                                                          "zipSHA256":  "ee20b73624e9d03974c2301d468d405c287771b4a441fe1d8fb6a069ba0b94db"
+                                                                                          "zipSHA256":  "9943e6a364585134ca384f25b2af7395997393321cb4335787047e758a8cea7e"
                                                                                       }
                                                                        }
                                                       }
