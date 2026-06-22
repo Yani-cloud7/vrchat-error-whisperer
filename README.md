@@ -16,7 +16,7 @@ Publish these generated files somewhere public:
 For GitHub Pages, the final Creator Companion repository URL would look like:
 
 ```text
-https://revelizermail-design.github.io/vrchat-error-whisperer/index.json
+https://Yani-cloud7.github.io/vrchat-error-whisperer/index.json
 ```
 
 For GitHub Releases instead of GitHub Pages, update the script's `BaseUrl` so `index.json` and the package zip point at the actual release asset URLs.
