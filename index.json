@@ -1,0 +1,28 @@
+﻿{
+    "name":  "OMISTAJA VRChat Creator Tools",
+    "id":  "com.omistaja.vpm",
+    "url":  "https://revelizermail-design.github.io/vrchat-error-whisperer/index.json",
+    "author":  "OMISTAJA",
+    "packages":  {
+                     "com.omistaja.error-whisperer":  {
+                                                          "versions":  {
+                                                                           "0.1.15":  {
+                                                                                          "name":  "com.omistaja.error-whisperer",
+                                                                                          "version":  "0.1.15",
+                                                                                          "displayName":  "VRChat Error Whisperer",
+                                                                                          "description":  "A tiny Unity Editor prototype that ranks VRChat SDK, Udon, Quest, and upload issues from the Unity Console.",
+                                                                                          "unity":  "2021.3",
+                                                                                          "license":  "MIT",
+                                                                                          "url":  "https://revelizermail-design.github.io/vrchat-error-whisperer/packages/com.omistaja.error-whisperer-0.1.15.zip",
+                                                                                          "vpmDependencies":  {
+
+                                                                                                              },
+                                                                                          "author":  {
+                                                                                                         "name":  "OMISTAJA"
+                                                                                                     },
+                                                                                          "zipSHA256":  "882e43b74e6a7e5f4deffb684e615f8e3a9478161662582b19d72b2731048ad6"
+                                                                                      }
+                                                                       }
+                                                      }
+                 }
+}
