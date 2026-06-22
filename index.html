@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VRChat Error Whisperer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-label="VRChat Error Whisperer">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">VRChat Creator Copilot</p>
+            <h1>Error Whisperer</h1>
+          </div>
+          <div class="status-strip" aria-label="Analysis status">
+            <span id="statusSignal" class="signal severe"></span>
+            <span id="statusText">Sample log loaded</span>
+          </div>
+        </header>
+
+        <div class="panes">
+          <section class="pane input-pane" aria-label="Log input">
+            <div class="pane-head">
+              <h2>Unity / SDK Log</h2>
+              <div class="button-row">
+                <button class="icon-button" id="loadSample" type="button" title="Load sample log" aria-label="Load sample log">+</button>
+                <button class="icon-button" id="clearLog" type="button" title="Clear log" aria-label="Clear log">x</button>
+              </div>
+            </div>
+            <textarea id="logInput" spellcheck="false" aria-label="Unity or VRChat SDK log"></textarea>
+            <div class="input-footer">
+              <label class="toggle">
+                <input type="checkbox" id="questMode" checked>
+                <span>Quest target</span>
+              </label>
+              <button id="analyzeButton" class="primary-button" type="button">Analyze</button>
+            </div>
+          </section>
+
+          <section class="pane output-pane" aria-label="Analysis output">
+            <div class="pane-head">
+              <h2>Root causes</h2>
+              <span id="findingCount" class="count">0</span>
+            </div>
+            <div class="score-panel" aria-label="Upload readiness score">
+              <div>
+                <span class="label">Build readiness score</span>
+                <strong id="readinessScore">-</strong>
+              </div>
+              <div>
+                <span class="label">Estimated upload chance</span>
+                <strong id="uploadChance">-</strong>
+              </div>
+            </div>
+            <div id="consoleSummary" class="console-summary"></div>
+            <div id="findings" class="findings" aria-live="polite"></div>
+          </section>
+        </div>
+
+        <section class="brief" aria-label="Build summary">
+          <article>
+            <span class="label">Likely cause</span>
+            <strong id="likelyCause">Waiting for analysis</strong>
+          </article>
+          <article>
+            <span class="label">Next action</span>
+            <strong id="nextAction">Paste or load a log</strong>
+          </article>
+          <article>
+            <span class="label">Confidence</span>
+            <strong id="confidence">-</strong>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

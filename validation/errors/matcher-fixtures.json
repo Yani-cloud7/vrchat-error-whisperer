@@ -1,0 +1,104 @@
+﻿{
+  "name": "Error Whisperer Matcher Fixtures",
+  "version": "0.1.0",
+  "fixtures": [
+    {
+      "id": "warnings-only-no-blocker",
+      "description": "Compiler warnings should not produce Fix first findings.",
+      "input": "[Warning] Assets/UdonSharp/UtilityScripts/FacilityDispenser.cs(83,36): warning CS0618: 'UdonSharpBehaviour.VRCInstantiate(GameObject)' is obsolete\n[Warning] Assets/VRCBilliardsCE/Runtime/Scripts/PoolStateManager.cs(63,22): warning CS0414: field is assigned but never used",
+      "expected": {
+        "errorCount": 0,
+        "rootCauseCount": 0,
+        "topFindingId": null
+      }
+    },
+    {
+      "id": "old-package-id-blocker",
+      "description": "Unity package manifest dependency points at the old package id.",
+      "input": "[Error] Unity Package Manager Error\n[Error] Project has invalid dependencies\n[Error] com.omistaja.error-whisperer: package.json cannot be found",
+      "expected": {
+        "errorCount": 3,
+        "topFindingId": "vrchat-unity-manifest-old-package-id",
+        "lane": "fix"
+      }
+    },
+    {
+      "id": "vrchat-side-upload-support",
+      "description": "Upload debugger proves local build is OK and upload is blocked by VRChat-side state.",
+      "input": "[Error] Build & Test succeeds but Build & Publish still fails\n[Error] Upload debugger isolates the failure after Unity bundle creation\n[Error] VRChat upload or API request fails even after local project checks pass\n[Error] Creator had to contact VRChat support\n[Error] Only VRChat could fix the account, world, blueprint, or backend state",
+      "expected": {
+        "errorCount": 5,
+        "topFindingId": "vrchat-vrchat-backend-upload-lock",
+        "caseType": "upload-support",
+        "lane": "support"
+      }
+    },
+    {
+      "id": "assetbundle-export-blocker",
+      "description": "AssetBundle export failure should rank as a current build blocker.",
+      "input": "[Error] Assertion failed on expression: 'success && actual == size'\n[Error] Error building Player: Failed to build scene: 'Assets/Scenes/ExampleWorld.unity'\n[Error] Building AssetBundle failed\n[Error] AssetBundle was not built",
+      "expected": {
+        "errorCount": 4,
+        "topFindingId": "vrchat-assetbundle-export-assertion",
+        "caseType": "console-error",
+        "lane": "fix"
+      }
+    },
+    {
+      "id": "stale-history-words-no-match",
+      "description": "Historical project words in an unrelated current compiler error should not match a fixed past issue.",
+      "input": "[Error] Assets/Scripts/NewScript.cs(10,5): error CS1002: ; expected\n[Error] The word lockdown appears in a comment, but this is just a generic syntax error.",
+      "expected": {
+        "errorCount": 2,
+        "rootCauseCount": 0,
+        "topFindingId": null
+      }
+    },
+    {
+      "id": "role-registrar-cs1513",
+      "description": "Specific UdonSharp RoleRegistrar brace error should match the RoleRegistrar compile case.",
+      "input": "[Error] Assets/UdonSharp/UtilityScripts/RoleRegistrar.cs(88,2): error CS1513: } expected\n[Error] UdonSharp compile failed",
+      "expected": {
+        "errorCount": 2,
+        "topFindingId": "vrchat-rolescript-cs1513",
+        "caseType": "console-error",
+        "lane": "fix"
+      }
+    },
+    {
+      "id": "billiards-ltcgi-missing-include",
+      "description": "Missing LTCGI shader include should rank above generic build/export noise.",
+      "input": "[Error] Shader error in 'Silent/Filamented': Couldn't open include file 'Assets/_pi_/_LTCGI/Shaders/LTCGI.cginc'\n[Error] VRChat SDK build failed\n[Warning] Texture Memory: 236 MB",
+      "expected": {
+        "errorCount": 2,
+        "topFindingId": "vrchat-vrcbilliards-ltcgi-missing-include",
+        "caseType": "console-error",
+        "lane": "fix"
+      }
+    },
+    {
+      "id": "stack-trace-counts-as-entry",
+      "description": "Multi-line Odin/Udon stack traces should count logical error entries, not every stack line.",
+      "input": "[Error] ArgumentNullException: Value cannot be null.\nParameter name: unityObject\nVRC.Udon.Serialization.OdinSerializer.UnitySerializationUtility.SerializeUnityObject(UnityEngine.Object unityObject)\nUdonSharp.UdonSharpBehaviour.UnityEngine.ISerializationCallbackReceiver.OnBeforeSerialize()\nContext: Assets/UdonSharp/UtilityScripts/MirrorBreachTrigger.asset (MirrorBreachTrigger)\n[Error] ./Packages/com.vrchat.worlds/Runtime/Udon/Serialization/OdinSerializer/Unity Integration/UnitySerializationUtility.cs:1031\n[Warning] Assets/UdonSharp/UtilityScripts/FacilityDispenser.cs(83,36): warning CS0618: obsolete",
+      "expected": {
+        "errorCount": 2,
+        "topFindingId": "vrchat-odin-unityobject-serializer-spam",
+        "caseType": "console-error",
+        "lane": "fix",
+        "minEvidenceSuspects": 1
+      }
+    },
+    {
+      "id": "error-whisperer-self-compile-error",
+      "description": "Error Whisperer's own editor compile errors should rank above unrelated stale project errors.",
+      "input": "[Error] C:\\Users\\OMISTAJA\\Documents\\VrchatUtilityExperiment\\Packages\\com.omistaja.error-whisperer\\Editor\\ErrorWhispererWindow.cs(169,66): error CS1061: 'ErrorWhispererWindow.EvidenceLine' does not contain a definition for 'Suspects' and no accessible extension method 'Suspects' accepting a first argument of type 'ErrorWhispererWindow.EvidenceLine' could be found\n[Error] C:\\Users\\OMISTAJA\\Documents\\VrchatUtilityExperiment\\Packages\\com.omistaja.error-whisperer\\Editor\\ErrorWhispererWindow.cs(376,42): error CS1729: 'ErrorWhispererWindow.EvidenceLine' does not contain a constructor that takes 3 arguments\n[Error] ArgumentNullException: Value cannot be null.",
+      "expected": {
+        "errorCount": 3,
+        "topFindingId": "vrchat-package-asmdef-imported-but-menu-absent-compile-block",
+        "caseType": "console-error",
+        "lane": "fix"
+      }
+    }
+  ]
+}
+
