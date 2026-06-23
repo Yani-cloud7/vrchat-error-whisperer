@@ -21,7 +21,7 @@ This project now has a VPM-compatible package and repository listing.
 3. Confirm the build reports `Matcher fixtures passed`.
 4. Decide the public repo name. The current generated URLs assume:
 
-   `https://Yani-cloud7.github.io/vrchat-error-whisperer`
+   `https://yani-cloud7.github.io/vrchat-error-whisperer`
 
 5. If the GitHub repo or username differs, rebuild with:
 
@@ -36,7 +36,7 @@ This project now has a VPM-compatible package and repository listing.
 3. Configure GitHub Pages to serve the `vpm-repository` folder as the site root, or copy the generated `index.json` and `packages` folder to your Pages branch/root.
 4. Confirm this URL opens in a browser:
 
-   `https://Yani-cloud7.github.io/vrchat-error-whisperer/index.json`
+   `https://yani-cloud7.github.io/vrchat-error-whisperer/index.json`
 
 5. In VRChat Creator Companion, add that URL as a community repository.
 6. The package should appear as `VRChat Error Whisperer`.

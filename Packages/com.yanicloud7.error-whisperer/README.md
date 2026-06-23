@@ -15,7 +15,7 @@ Unity Editor alpha tool for ranking VRChat SDK, Udon, Quest, and upload issues f
 1. Open VRChat Creator Companion.
 2. Add the repository URL:
 
-   `https://Yani-cloud7.github.io/vrchat-error-whisperer/index.json`
+   `https://yani-cloud7.github.io/vrchat-error-whisperer/index.json`
 
 3. Add `VRChat Error Whisperer` to your Unity project.
 

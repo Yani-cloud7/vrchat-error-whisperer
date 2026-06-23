@@ -11,7 +11,7 @@ Alpha Unity Editor tool for VRChat creators. It reads Unity Console output, rank
 Add this repository URL to VRChat Creator Companion:
 
 ```text
-https://Yani-cloud7.github.io/vrchat-error-whisperer/index.json
+https://yani-cloud7.github.io/vrchat-error-whisperer/index.json
 ```
 
 Then add `VRChat Error Whisperer` to your Unity project.

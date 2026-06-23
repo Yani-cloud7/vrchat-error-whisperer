@@ -5,7 +5,7 @@
   "description": "A tiny Unity Editor prototype that ranks VRChat SDK, Udon, Quest, and upload issues from the Unity Console.",
   "unity": "2021.3",
   "license": "MIT",
-  "url": "https://Yani-cloud7.github.io/vrchat-error-whisperer/packages/com.yanicloud7.error-whisperer-0.1.16.zip",
+  "url": "https://yani-cloud7.github.io/vrchat-error-whisperer/packages/com.yanicloud7.error-whisperer-0.1.16.zip",
   "vpmDependencies": {},
   "author": {
     "name": "Yani-cloud7"
