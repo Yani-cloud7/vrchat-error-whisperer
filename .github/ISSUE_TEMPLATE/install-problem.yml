@@ -1,0 +1,55 @@
+name: Install problem
+description: VCC, VPM, Unity Package Manager, or Unity menu install issue.
+title: "[Install problem]: "
+labels:
+  - install-problem
+  - alpha-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when the VCC repository URL, package install, Unity import, or `Tools > VRChat Utility > Error Whisperer` menu does not work.
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: VCC repository URL used
+      value: "https://yani-cloud7.github.io/vrchat-error-whisperer/index.json"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Error Whisperer version
+      placeholder: "Example: 0.1.16"
+
+  - type: input
+    id: unity
+    attributes:
+      label: Unity version
+      placeholder: "Example: 2022.3.22f1"
+    validations:
+      required: true
+
+  - type: input
+    id: sdk
+    attributes:
+      label: VRChat SDK / world package version
+      placeholder: "Example: SDK Worlds 3.x"
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include VCC/Unity Package Manager errors and whether the Tools menu item appears.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error text or screenshot
+      description: Paste error text or drag in a screenshot. Remove private account/project info.
+      render: text
+

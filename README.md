@@ -88,3 +88,16 @@ Copy the support summary and include blueprint ID, world ID, account name, SDK l
 
 This is an alpha prototype. The goal is not to detect every error. The goal is to help creators ignore noise and fix the first meaningful blocker.
 
+## Alpha Feedback
+
+If Error Whisperer gives a wrong or missing result, please open an issue and include:
+
+- screenshot of the Error Whisperer window
+- pasted Unity Console output
+- what you expected it to say
+- what actually fixed the issue, if you know
+
+Please remove private world IDs, account names, and secret project paths before sharing logs publicly.
+
+See [Alpha Testing](docs/ALPHA_TESTING.md) for the tester checklist and invite message.
+

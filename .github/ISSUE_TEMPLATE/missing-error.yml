@@ -1,0 +1,59 @@
+name: Missing error
+description: Error Whisperer did not recognize an error or stayed too generic.
+title: "[Missing error]: "
+labels:
+  - missing-error
+  - alpha-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when Error Whisperer says "No corpus match" or gives only a generic answer, but there is a real VRChat/Unity problem it should learn.
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Unity Console text
+      description: Paste the relevant Console output. Remove secrets, account names, private world IDs, or anything you do not want public.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should the tool learn?
+      description: What root cause and next action would have helped?
+      placeholder: "Example: Missing LTCGI include should suggest installing/importing LTCGI before changing materials."
+    validations:
+      required: true
+
+  - type: textarea
+    id: fixed_by
+    attributes:
+      label: What fixed it?
+      description: If you solved it, describe the fix.
+
+  - type: input
+    id: version
+    attributes:
+      label: Error Whisperer version
+      placeholder: "Example: 0.1.16"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - C# / UdonSharp compile
+        - Udon serialization / stale program asset
+        - SDK build
+        - Upload / blueprint / account
+        - Quest / shader / material
+        - Package dependency
+        - Other
+    validations:
+      required: true
+

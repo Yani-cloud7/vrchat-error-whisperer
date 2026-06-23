@@ -1,0 +1,58 @@
+name: Wrong diagnosis
+description: Error Whisperer matched something, but the result was wrong or misleading.
+title: "[Wrong diagnosis]: "
+labels:
+  - wrong-diagnosis
+  - alpha-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing Error Whisperer. Please include enough evidence to turn this into a better matcher/corpus case.
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it have said?
+      description: Describe the diagnosis or next action you expected.
+      placeholder: "Example: It should have pointed at the missing semicolon in Assets/UdonSharp/Door.cs, not an upload issue."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What did Error Whisperer say?
+      description: Paste the title, Fix first/Next text, and any suspect asset result.
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Unity Console text
+      description: Paste the relevant Console output. Remove secrets, account names, private world IDs, or anything you do not want public.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Error Whisperer version
+      placeholder: "Example: 0.1.16"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag in a screenshot if useful. Please hide private project names or account info.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Extra context
+      description: What action fixed the issue, if you already know?
+
